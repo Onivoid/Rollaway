@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
+import { usePrefersReducedMotion, useViewportSize } from "@/lib/client";
 
 const CONFETTI_COLORS = [
   "#f5d547",
@@ -19,47 +20,28 @@ export function WinnerReveal({
   winners: string[];
   onClose: () => void;
 }) {
-  const [viewport, setViewport] = useState({ width: 0, height: 0 });
-  const [phase, setPhase] = useState<"drumroll" | "reveal">("drumroll");
-  const [reduceMotion, setReduceMotion] = useState(false);
+  const viewport = useViewportSize();
+  const reduceMotion = usePrefersReducedMotion();
+  const [phase, setPhase] = useState<"drumroll" | "reveal">(
+    reduceMotion ? "reveal" : "drumroll"
+  );
   const [shower, setShower] = useState(true);
-
   useEffect(() => {
-    if (winners.length === 0) return;
-
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduceMotion(media.matches);
-    const onMedia = () => setReduceMotion(media.matches);
-    media.addEventListener("change", onMedia);
-
-    const measure = () =>
-      setViewport({ width: window.innerWidth, height: window.innerHeight });
-    measure();
-    window.addEventListener("resize", measure);
-
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKey);
 
-    setShower(true);
-    setPhase(media.matches ? "reveal" : "drumroll");
-    const revealTimer = window.setTimeout(
-      () => setPhase("reveal"),
-      media.matches ? 0 : 720
-    );
+    const revealAt = reduceMotion ? 0 : 720;
+    const revealTimer = window.setTimeout(() => setPhase("reveal"), revealAt);
     const showerTimer = window.setTimeout(() => setShower(false), 5200);
 
     return () => {
-      media.removeEventListener("change", onMedia);
-      window.removeEventListener("resize", measure);
       window.removeEventListener("keydown", onKey);
       window.clearTimeout(revealTimer);
       window.clearTimeout(showerTimer);
     };
-  }, [winners, onClose]);
-
-  if (winners.length === 0) return null;
+  }, [onClose, reduceMotion]);
 
   const plural = winners.length > 1;
   const showConfetti = phase === "reveal" && !reduceMotion && viewport.width > 0;
