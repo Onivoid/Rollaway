@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Rollaway — Boarding pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0B0D10; --slate: #1A1F27; --slate-2: #242B36; --line: #3A4352;
+    --paper: #F4F5F7; --paper-2: #E6E8EC; --mute: #6B7380; --alert: #FFD400;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1440px; height: 900px; overflow: hidden; background: var(--ink);
+    font-family: Inter, system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased;
+  }
+  .stage {
+    width: 1440px; height: 900px; display: grid; grid-template-rows: 64px 1fr;
+    background:
+      linear-gradient(90deg, rgba(255,212,0,.04) 0 1px, transparent 1px) 0 0 / 48px 48px,
+      linear-gradient(180deg, #12161C 0%, var(--ink) 55%, #08090C 100%);
+  }
+  header { display: flex; align-items: stretch; border-bottom: 1px solid var(--line); font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .brand {
+    width: 280px; display: flex; align-items: center; gap: 12px; padding: 0 24px;
+    background: var(--slate); border-right: 1px solid var(--line); color: var(--paper);
+  }
+  .mark { width: 10px; height: 28px; background: var(--alert); }
+  .brand h1 { font-size: 18px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .flight {
+    flex: 1; display: flex; align-items: center; justify-content: space-between; padding: 0 28px;
+    color: var(--paper-2); font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .flight strong { color: var(--alert); font-weight: 600; }
+  .gate-tag { height: 28px; padding: 0 12px; display: inline-flex; align-items: center; background: var(--alert); color: var(--ink); font-weight: 700; letter-spacing: .1em; }
+  main { display: grid; grid-template-columns: 520px 1fr; gap: 28px; padding: 28px 32px 32px; min-height: 0; }
+  .pass { background: var(--paper); border: 1px solid var(--paper-2); box-shadow: 0 20px 48px rgba(0,0,0,.45); display: flex; flex-direction: column; min-height: 0; }
+  .pass-head {
+    display: flex; justify-content: space-between; align-items: flex-end; padding: 22px 24px 18px;
+    border-bottom: 2px dashed var(--line); background: #FAFBFC;
+  }
+  .pass-head .lbl { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin-bottom: 6px; }
+  .pass-head .name { font-size: 28px; font-weight: 700; letter-spacing: -.02em; }
+  .pass-head .code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 22px; font-weight: 700; letter-spacing: .08em; background: var(--ink); color: var(--alert); padding: 8px 12px; }
+  .seg { border-bottom: 1px solid var(--paper-2); padding: 18px 24px 16px; font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .seg h2 { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .seg h2::after { content: ""; flex: 1; height: 1px; background: var(--paper-2); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+  label { display: flex; flex-direction: column; gap: 6px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); font-weight: 600; }
+  input {
+    height: 40px; border: 1.5px solid var(--line); background: #fff; padding: 0 12px; border-radius: 0; outline: none;
+    font: 500 14px "IBM Plex Mono", ui-monospace, monospace; color: var(--ink);
+  }
+  input:focus { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+  .kv { display: grid; grid-template-columns: 120px 1fr; gap: 8px 12px; font-size: 13px; }
+  .kv span { color: var(--mute); letter-spacing: .06em; text-transform: uppercase; font-size: 10px; font-weight: 600; align-self: center; }
+  .kv strong { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .kv .lit { background: var(--alert); color: var(--ink); padding: 4px 8px; display: inline-block; }
+  .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 18px 24px 24px; margin-top: auto; background: var(--paper-2); }
+  button { height: 44px; border: 1.5px solid var(--ink); background: #fff; color: var(--ink); font: 600 13px Inter, system-ui, sans-serif; letter-spacing: .02em; cursor: default; border-radius: 0; }
+  .btn-pri { background: var(--ink); color: var(--paper); }
+  .btn-alert { background: var(--alert); border-color: #C9A800; color: var(--ink); grid-column: 1 / -1; height: 48px; font-size: 14px; font-weight: 700; }
+  .board { background: var(--slate); border: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; box-shadow: inset 0 0 0 1px rgba(255,212,0,.08); }
+  .board-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .board-head h2 { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--paper); }
+  .board-head .count { font-size: 12px; color: var(--mute); letter-spacing: .08em; text-transform: uppercase; }
+  .board-head .count b { color: var(--alert); font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; margin-right: 6px; }
+  .cols, .row { display: grid; grid-template-columns: 56px 1fr 140px 100px; font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .cols { padding: 10px 20px; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); border-bottom: 1px solid var(--line); background: var(--slate-2); }
+  .list { flex: 1; overflow: hidden; }
+  .row { padding: 0 20px; height: 48px; align-items: center; font-size: 14px; color: #C8CDD6; border-bottom: 1px solid rgba(58,67,82,.55); font-variant-numeric: tabular-nums; }
+  .row:nth-child(even) { background: rgba(0,0,0,.18); }
+  .row .n { color: var(--mute); }
+  .row.new { background: var(--alert); color: var(--ink); font-weight: 600; box-shadow: inset 3px 0 0 var(--ink); }
+  .row.new .n { color: var(--ink); opacity: .7; }
+  .row .st { letter-spacing: .08em; text-transform: uppercase; font-size: 11px; font-weight: 600; }
+  .row.new .st { background: var(--ink); color: var(--alert); padding: 3px 8px; justify-self: start; }
+  .board-foot { padding: 12px 20px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); }
+  .board-foot em { font-style: normal; color: var(--alert); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <header>
+    <div class="brand"><span class="mark" aria-hidden="true"></span><h1>Rollaway</h1></div>
+    <div class="flight">
+      <span>Giveaway Twitch · Vol <strong>RWY-01</strong></span>
+      <span>Destination · Participants</span>
+      <span class="gate-tag">Porte B12</span>
+    </div>
+  </header>
+  <main>
+    <section class="pass" aria-label="Carte d'embarquement">
+      <div class="pass-head">
+        <div><div class="lbl">Organisateur</div><div class="name">Rollaway</div></div>
+        <div class="code">GIVE</div>
+      </div>
+      <div class="seg">
+        <h2>Chaîne</h2>
+        <div class="grid2">
+          <label for="ch">Chaîne Twitch<input id="ch" type="text" value="onivoid" readonly /></label>
+          <label for="srv">Serveur IRC<input id="srv" type="text" value="irc.chat.twitch.tv" readonly /></label>
+        </div>
+      </div>
+      <div class="seg">
+        <h2>Commande</h2>
+        <div class="grid2">
+          <label for="cmd">Mot-clé exact<input id="cmd" type="text" value="!giveaway" readonly /></label>
+          <label for="mode">Matching<input id="mode" type="text" value="trim + casefold" readonly /></label>
+        </div>
+      </div>
+      <div class="seg">
+        <h2>Statut</h2>
+        <div class="kv">
+          <span>Connexion</span><strong>Connecté</strong>
+          <span>Capture</span><strong class="lit">Active</strong>
+          <span>Inscrits</span><strong>12 / ouvert</strong>
+          <span>Gagnant</span><strong>— en attente</strong>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button">Connecter</button>
+        <button class="btn-pri" type="button">Stopper capture</button>
+        <button class="btn-alert" type="button">Tirer un gagnant</button>
+      </div>
+    </section>
+    <section class="board" aria-label="Tableau des départs">
+      <div class="board-head">
+        <h2>Participants · Embarquement</h2>
+        <div class="count"><b>12</b> inscrits</div>
+      </div>
+      <div class="cols"><span>#</span><span>Pseudo</span><span>Commande</span><span>Statut</span></div>
+      <div class="list">
+        <div class="row"><span class="n">01</span><span>NightOwl_FR</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="row"><span class="n">02</span><span>PixelMaraude</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="row"><span class="n">03</span><span>Chatouilleuse</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="row"><span class="n">04</span><span>BlueLagoon</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="row"><span class="n">05</span><span>KeroStream</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="row"><span class="n">06</span><span>Lumen_FR</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="row"><span class="n">07</span><span>TarotNocturne</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="row"><span class="n">08</span><span>SodaPixel</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="row"><span class="n">09</span><span>MireilleBit</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="row"><span class="n">10</span><span>VaporClaw</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="row"><span class="n">11</span><span>HexaCafe</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="row new"><span class="n">12</span><span>NovaBande</span><span>!giveaway</span><span class="st">Nouveau</span></div>
+      </div>
+      <div class="board-foot">
+        <span>Dernier scan · 14:32:08</span>
+        <span><em>Nouvelle entrée</em> · rangée 12</span>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

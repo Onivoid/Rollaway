@@ -1,0 +1,145 @@
+{
+  "title": "Direction visuelle Rollaway",
+  "question": "Le tirage a assigné Rideau de scène. On le garde, on prend une alternative, ou on relance ?",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Rideau de scène",
+      "kicker": "THE ROLL",
+      "lineage": "Tirage de prix au théâtre — rideau velours, lumière de scène, révélation",
+      "thesis": "Le giveaway comme scène : la liste est le plateau, le tirage ouvre le rideau sur le gagnant.",
+      "palette": ["#14080C", "#6B1C32", "#E8C547", "#F4EFE6"],
+      "materials": ["velours burgundy", "or de scène", "panneaux porcelaine"],
+      "viewport": "Shell sombre : marque Rollaway + pastilles d’état en tête ; colonne setup à gauche (chaîne, commande, connecter, capturer, tirer) ; plateau participants à droite avec compteur ; le rideau n’existe que pour le reveal gagnant.",
+      "risk": "Risque costume théâtre si le rideau fuit dans les boutons — le garder uniquement pour le moment gagnant.",
+      "raised": [
+        {
+          "from": "challenger-ikeda-datamatics",
+          "raise": "Le shell entier est un champ couleur engagé (burgundy + scène), jamais gris + un accent."
+        },
+        {
+          "from": "challenger-star-atlas",
+          "raise": "Le gagnant porte un anneau / halo ambre de sélection, hiérarchie visuelle nette."
+        },
+        {
+          "from": "challenger-midnight-transit",
+          "raise": "Connecté / Capture / Tirage ont des couleurs d’état distinctes et lisibles d’un coup d’œil."
+        },
+        {
+          "from": "challenger-vertical-feed",
+          "raise": "Au tirage, un seul moment focal occupe l’attention — le reveal, pas un modal carte générique."
+        }
+      ],
+      "html": ".impeccable/mocks/decision/assigned.html",
+      "comp": ".impeccable/mocks/decision/assigned.webp"
+    },
+    {
+      "id": "model-pick",
+      "label": "Machine à boules Loto",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Tirage Loto / FDJ — boules, compteur mécanique, lumière froide",
+      "thesis": "Le compteur de participants est une machine à boules : le tirage, c’est le rituel français du hasard.",
+      "palette": ["#071018", "#0B3A5B", "#5EC8E8", "#F2F7FA"],
+      "materials": ["acrylique froid", "chiffres tabulaires", "cyan loterie"],
+      "viewport": "Bandeau cyan engagé ; setup à gauche ; à droite le roster sous un grand compteur numérique qui « tourne » à chaque entrée ; tirage = boule qui se fige sur un pseudo.",
+      "risk": "Direction la plus familière de la catégorie giveaway — efficace, mais prévisible.",
+      "html": ".impeccable/mocks/decision/model-pick.html",
+      "comp": ".impeccable/mocks/decision/model-pick.webp"
+    },
+    {
+      "id": "challenger-boarding-pass",
+      "label": "Boarding pass & gate board",
+      "verdict": "competitive",
+      "lineage": "Carte d’embarquement + tableau des départs",
+      "thesis": "Setup en segments de boarding pass ; la liste participants se comporte comme un tableau de portes qui se met à jour en place.",
+      "palette": ["#F4F1EC", "#1A1A1A", "#C45C26", "#2B2B2B"],
+      "materials": ["panels neutres", "bloc monospace scannable", "alerte orange changements"],
+      "viewport": "Pass segmenté (chaîne / commande / statut) à gauche ; board tabulaire à droite où chaque nouvelle entrée reste allumée jusqu’à ce qu’on l’ait vue.",
+      "case": "Gagne nettement sur la clarté des états live ; moins d’identification streamer que le rideau.",
+      "risk": "Peut sentir « voyage » plutôt que live Twitch si le grammar est trop littéral.",
+      "html": ".impeccable/mocks/decision/challenger-boarding-pass.html",
+      "comp": ".impeccable/mocks/decision/challenger-boarding-pass.webp",
+      "hero": "https://impeccable.style/worlds/cards/vernacular-ephemera-boarding-pass-and-gate-board-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/vernacular-ephemera-boarding-pass-and-gate-board.webp"
+    },
+    {
+      "id": "challenger-jp-density",
+      "label": "Densité web japonaise",
+      "verdict": "competitive",
+      "lineage": "Sites JP haute densité — modules ruled, tabs rouge utilitaire",
+      "thesis": "Tout le giveaway tient dans une mosaïque dense de modules : zéro pixel perdu sur le second moniteur.",
+      "palette": ["#FFFFFF", "#111111", "#E10600", "#E8E8E8"],
+      "materials": ["hairlines", "onglets rouge signal", "mosaïque de modules"],
+      "viewport": "Grille dense : config, connexion, contrôles, roster — chacun son module avec petit tab rouge ; le compteur participants est le bloc le plus grand.",
+      "case": "Densité idéale pendant un live ; identification culturelle plus faible pour un streamer FR.",
+      "risk": "Trop dense = stress si mal hiérarchisé.",
+      "html": ".impeccable/mocks/decision/challenger-jp-density.html",
+      "comp": ".impeccable/mocks/decision/challenger-jp-density.webp",
+      "hero": "https://impeccable.style/worlds/cards/japanese-high-density-web-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/japanese-high-density-web.webp"
+    },
+    {
+      "id": "challenger-ikeda-datamatics",
+      "label": "Champ datamatics",
+      "verdict": "declined",
+      "lineage": "Ryoji Ikeda — barcode B/W, densités numériques",
+      "palette": ["#000000", "#FFFFFF"],
+      "materials": ["barres pixel-crisp", "monospace dense"],
+      "case": "Identification audience trop faible pour un outil de stream.",
+      "kept": "Engagement total du champ (pas de gris + accent).",
+      "hero": "https://impeccable.style/worlds/cards/ikeda-datamatics-hero.webp"
+    },
+    {
+      "id": "challenger-star-atlas",
+      "label": "Atlas stellaire",
+      "verdict": "declined",
+      "lineage": "Cartes du ciel — magnitudes, anneau rouge lampe",
+      "palette": ["#0A1628", "#E8E4D9", "#C45C26"],
+      "materials": ["points magnitude", "grille de coordonnées"],
+      "case": "Les points obscurcissent la tâche opérationnelle.",
+      "kept": "Hiérarchie gagnant via anneau de sélection ambre.",
+      "hero": "https://impeccable.style/worlds/cards/notation-diagram-systems-star-atlas-hero.webp"
+    },
+    {
+      "id": "challenger-midnight-transit",
+      "label": "Plan de métro minuit",
+      "verdict": "declined",
+      "lineage": "Diagramme transit émail midnight-blue",
+      "palette": ["#0A1628", "#E31C23", "#F5C518", "#2E6BFF"],
+      "materials": ["émail", "lignes 45°"],
+      "case": "Costume cartographique sur un écran de travail.",
+      "kept": "Couleurs d’état distinctes par phase du flux.",
+      "hero": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-midnight-transit-diagram-hero.webp"
+    },
+    {
+      "id": "challenger-vertical-feed",
+      "label": "Feed vertical plein cadre",
+      "verdict": "declined",
+      "lineage": "Surface média verticale plein viewport",
+      "palette": ["#000000", "#FFFFFF", "#FE2C55"],
+      "materials": ["média edge-to-edge", "rail d’actions"],
+      "case": "Mauvais modèle pour un outil multi-contrôles en live.",
+      "kept": "Un moment focal unique pour le reveal gagnant.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-vertical-video-feed-surface-hero.webp"
+    }
+  ],
+  "reroll": {
+    "registers": ["safer", "bolder"]
+  },
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "Le standard catégorie",
+    "thesis": "Dashboard giveaway sombre violet Twitch, cartes shadcn, exécuté impeccablement.",
+    "palette": ["#0E0E10", "#9146FF", "#FFFFFF", "#1F1F23"],
+    "materials": ["cards", "violet Twitch", "grille SaaS"],
+    "viewport": "Header + 3 cards setup + table participants — ce que la catégorie livre déjà.",
+    "risk": "Indistinguable des clones Streamlabs / outils giveaway du marché.",
+    "html": ".impeccable/mocks/decision/canon.html",
+    "comp": ".impeccable/mocks/decision/canon.webp"
+  },
+  "steer": true
+}

@@ -1,0 +1,413 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-02T15:15:56Z",
+  "title": "Design System: Rollaway",
+  "extensions": {
+    "colorMeta": {
+      "desk": {
+        "role": "neutral",
+        "displayName": "Charcoal Desk",
+        "canonical": "#12141A",
+        "tonalRamp": [
+          "#0A0B0F",
+          "#12141A",
+          "#1C1F28",
+          "#2A2E3A",
+          "#3A4050",
+          "#5C6375",
+          "#8B92A3",
+          "#C8CCD6"
+        ]
+      },
+      "desk-raised": {
+        "role": "neutral",
+        "displayName": "Raised Desk",
+        "canonical": "#1C1F28",
+        "tonalRamp": [
+          "#0E1016",
+          "#12141A",
+          "#1C1F28",
+          "#2A2E3A",
+          "#3E4454",
+          "#5E6578",
+          "#8E95A6",
+          "#D0D3DB"
+        ]
+      },
+      "porcelain": {
+        "role": "neutral",
+        "displayName": "Porcelain Panel",
+        "canonical": "#F4F2EC",
+        "tonalRamp": [
+          "#2A2824",
+          "#4A4640",
+          "#7A7468",
+          "#A8A296",
+          "#CDC8BC",
+          "#E4E0D6",
+          "#F4F2EC",
+          "#FCFAF6"
+        ]
+      },
+      "porcelain-ink": {
+        "role": "neutral",
+        "displayName": "Porcelain Ink",
+        "canonical": "#12141A",
+        "tonalRamp": [
+          "#0A0B0F",
+          "#12141A",
+          "#1C1F28",
+          "#2A2E3A",
+          "#4A5060",
+          "#6E7588",
+          "#9AA1B0",
+          "#D4D7DE"
+        ]
+      },
+      "ticket": {
+        "role": "primary",
+        "displayName": "Ticket Yellow",
+        "canonical": "#F5D547",
+        "tonalRamp": [
+          "#3D3208",
+          "#6B5610",
+          "#9A7A18",
+          "#C9A020",
+          "#E4C038",
+          "#F5D547",
+          "#F8E27A",
+          "#FBF0B0"
+        ]
+      },
+      "ticket-ink": {
+        "role": "neutral",
+        "displayName": "Ticket Ink",
+        "canonical": "#12141A",
+        "tonalRamp": [
+          "#0A0B0F",
+          "#12141A",
+          "#1C1F28",
+          "#2A2E3A",
+          "#4A5060",
+          "#6E7588",
+          "#9AA1B0",
+          "#D4D7DE"
+        ]
+      },
+      "punch": {
+        "role": "secondary",
+        "displayName": "Capture Magenta",
+        "canonical": "#E11D7A",
+        "tonalRamp": [
+          "#3D0620",
+          "#6B0E38",
+          "#9A1450",
+          "#C41868",
+          "#E11D7A",
+          "#E84D96",
+          "#F08BB8",
+          "#F8C8DC"
+        ]
+      },
+      "punch-ink": {
+        "role": "neutral",
+        "displayName": "Punch Ink",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#2A2A2A",
+          "#4A4A4A",
+          "#6E6E6E",
+          "#949494",
+          "#B8B8B8",
+          "#D6D6D6",
+          "#EEEEEE",
+          "#FFFFFF"
+        ]
+      },
+      "live": {
+        "role": "tertiary",
+        "displayName": "Live Green",
+        "canonical": "#3DDC84",
+        "tonalRamp": [
+          "#0A3D22",
+          "#126B3A",
+          "#1A9A52",
+          "#24C06A",
+          "#3DDC84",
+          "#6AE6A2",
+          "#9AF0C2",
+          "#CFF8E0"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Desk Foreground",
+        "canonical": "#F4F2EC",
+        "tonalRamp": [
+          "#2A2824",
+          "#4A4640",
+          "#7A7468",
+          "#A8A296",
+          "#CDC8BC",
+          "#E4E0D6",
+          "#F4F2EC",
+          "#FCFAF6"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Desk",
+        "canonical": "#2A2E3A",
+        "tonalRamp": [
+          "#101218",
+          "#1C1F28",
+          "#2A2E3A",
+          "#3A4050",
+          "#545B6C",
+          "#787F90",
+          "#A4AAB8",
+          "#D2D5DC"
+        ]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Muted Foreground",
+        "canonical": "#A8ADB8",
+        "tonalRamp": [
+          "#2A2E3A",
+          "#3E4452",
+          "#565C6C",
+          "#707686",
+          "#8A909E",
+          "#A8ADB8",
+          "#C4C8D0",
+          "#E0E2E8"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Desk Border",
+        "canonical": "#2E3340",
+        "tonalRamp": [
+          "#12141A",
+          "#1C1F28",
+          "#2E3340",
+          "#3E4454",
+          "#585E70",
+          "#7A8090",
+          "#A4AAB8",
+          "#D0D3DB"
+        ]
+      },
+      "field-bg": {
+        "role": "neutral",
+        "displayName": "Field White",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#2A2A2A",
+          "#4A4A4A",
+          "#6E6E6E",
+          "#949494",
+          "#B8B8B8",
+          "#D6D6D6",
+          "#EEEEEE",
+          "#FFFFFF"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Ticket counts, brand wordmark, draw CTA, winner stamp headlines."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Guichet and till section titles in uppercase condensed."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Secondary till headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Helper copy, stub usernames, alerts, footer."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field labels, status chips, micro till labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "draw-lift",
+        "value": "0 8px 18px rgba(18,20,26,0.28)",
+        "purpose": "Structural lift under the yellow draw CTA only; removed when disabled."
+      },
+      {
+        "name": "stamp-drop",
+        "value": "0 18px 40px rgba(0,0,0,0.45)",
+        "purpose": "Winner stamp dialog over the desk scrim."
+      },
+      {
+        "name": "stub-spine",
+        "value": "inset 12px 0 0 color-mix(in srgb, #F5D547 35%, transparent)",
+        "purpose": "Left yellow spine inside perforated ticket stubs."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-mechanica",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Shared easing for stub enter and stamp reveal."
+      },
+      {
+        "name": "stub-in",
+        "value": "stub-in 320ms cubic-bezier(0.16, 1, 0.3, 1) both",
+        "purpose": "New ticket stub slides in from the left with a slight scale and blur."
+      },
+      {
+        "name": "stamp-in",
+        "value": "stamp-in 520ms cubic-bezier(0.16, 1, 0.3, 1) both",
+        "purpose": "Winner stamp lands with overshoot scale and slight rotate."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Draw Button",
+      "kind": "button",
+      "refersTo": "button-draw",
+      "description": "Isolated yellow cashier CTA at the guichet bottom — the only primary action.",
+      "html": "<button class=\"ds-btn-draw\" type=\"button\">Tirer un gagnant</button>",
+      "css": ".ds-btn-draw { display: block; width: 100%; height: 64px; padding: 0 24px; border: none; border-radius: 0; background: #F5D547; color: #12141A; font-family: \"Barlow Condensed\", ui-sans-serif, system-ui, sans-serif; font-size: 1.5rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; box-shadow: 0 8px 18px rgba(18,20,26,0.28); cursor: pointer; transition: filter 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease; } .ds-btn-draw:hover { filter: brightness(1.05); } .ds-btn-draw:focus-visible { outline: 2px solid #F5D547; outline-offset: 2px; } .ds-btn-draw:disabled { opacity: 0.35; box-shadow: none; cursor: not-allowed; }"
+    },
+    {
+      "name": "Desk Button",
+      "kind": "button",
+      "refersTo": "button-desk",
+      "description": "Charcoal action on porcelain for connect and start-capture.",
+      "html": "<button class=\"ds-btn-desk\" type=\"button\">Connecter au chat</button>",
+      "css": ".ds-btn-desk { display: inline-flex; align-items: center; justify-content: center; width: 100%; height: 44px; padding: 0 16px; border: none; border-radius: 0; background: #12141A; color: #F4F2EC; font-family: \"Source Sans 3\", system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: background 0.15s ease, opacity 0.15s ease; } .ds-btn-desk:hover { background: #1C1F28; } .ds-btn-desk:focus-visible { outline: 2px solid #F5D547; outline-offset: 2px; } .ds-btn-desk:disabled { opacity: 0.4; cursor: not-allowed; }"
+    },
+    {
+      "name": "Capture Stop Button",
+      "kind": "button",
+      "refersTo": "button-capture-stop",
+      "description": "Magenta outline control used only while capture is active.",
+      "html": "<button class=\"ds-btn-capture-stop\" type=\"button\">Arrêter la capture</button>",
+      "css": ".ds-btn-capture-stop { display: inline-flex; align-items: center; justify-content: center; width: 100%; height: 44px; padding: 0 16px; border: 2px solid #E11D7A; border-radius: 0; background: transparent; color: #E11D7A; font-family: \"Source Sans 3\", system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: background 0.15s ease; } .ds-btn-capture-stop:hover { background: color-mix(in srgb, #E11D7A 10%, transparent); } .ds-btn-capture-stop:focus-visible { outline: 2px solid #F5D547; outline-offset: 2px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Quiet reset / secondary action on porcelain.",
+      "html": "<button class=\"ds-btn-outline\" type=\"button\">Réinitialiser la liste</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; width: 100%; height: 40px; padding: 0 16px; border: 1px solid color-mix(in srgb, #12141A 15%, transparent); border-radius: 0; background: transparent; color: color-mix(in srgb, #12141A 80%, transparent); font-family: \"Source Sans 3\", system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; } .ds-btn-outline:hover { background: color-mix(in srgb, #12141A 5%, transparent); } .ds-btn-outline:focus-visible { outline: 2px solid #F5D547; outline-offset: 2px; }"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "chip-idle",
+      "description": "Top-bar status: idle raised desk, or live / punch / ticket when active.",
+      "html": "<span class=\"ds-chip ds-chip--idle\"><span class=\"ds-chip__dot\" aria-hidden=\"true\"></span>Hors ligne</span><span class=\"ds-chip ds-chip--ticket\"><span class=\"ds-chip__dot\" aria-hidden=\"true\"></span>3 tickets</span><span class=\"ds-chip ds-chip--punch\"><span class=\"ds-chip__dot ds-chip__dot--on-punch\" aria-hidden=\"true\"></span>Capture active</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid #2E3340; border-radius: 0; font-family: \"Source Sans 3\", system-ui, sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; } .ds-chip__dot { width: 6px; height: 6px; border-radius: 9999px; background: #A8ADB8; } .ds-chip--idle { background: #1C1F28; color: #A8ADB8; } .ds-chip--ticket { border-color: #F5D547; background: #F5D547; color: #12141A; } .ds-chip--ticket .ds-chip__dot { background: #12141A; } .ds-chip--punch { border-color: #E11D7A; background: #E11D7A; color: #FFFFFF; } .ds-chip__dot--on-punch { background: #FFFFFF; } .ds-chip--live { border-color: color-mix(in srgb, #3DDC84 40%, transparent); background: color-mix(in srgb, #3DDC84 15%, transparent); color: #3DDC84; } .ds-chip--live .ds-chip__dot { background: #3DDC84; }"
+    },
+    {
+      "name": "Field Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Standard square text field on porcelain with ticket focus border.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field__label\">Chaîne Twitch</span><input class=\"ds-field__input\" type=\"text\" placeholder=\"votre_chaine\" /></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; } .ds-field__label { font-family: \"Source Sans 3\", system-ui, sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: color-mix(in srgb, #12141A 55%, transparent); } .ds-field__input { height: 44px; width: 100%; padding: 0 12px; border: 1px solid color-mix(in srgb, #12141A 15%, transparent); border-radius: 0; background: #FFFFFF; color: #12141A; font-family: \"Source Sans 3\", system-ui, sans-serif; font-size: 0.875rem; caret-color: #F5D547; outline: none; transition: border-color 0.15s ease, opacity 0.15s ease; } .ds-field__input::placeholder { color: color-mix(in srgb, #12141A 35%, transparent); } .ds-field__input:focus { border-color: #F5D547; } .ds-field__input:focus-visible { outline: 2px solid #F5D547; outline-offset: 2px; } .ds-field__input:disabled { opacity: 0.55; cursor: not-allowed; }"
+    },
+    {
+      "name": "Ticket Stub",
+      "kind": "custom",
+      "refersTo": "ticket-stub",
+      "description": "Perforated porcelain stub row — signature list item for each participant.",
+      "html": "<div class=\"ds-stub\"><span class=\"ds-stub__rank\">03</span><span class=\"ds-stub__name\">NovaBande</span><span class=\"ds-stub__meta\">!giveaway</span></div>",
+      "css": ".ds-stub { position: relative; display: flex; align-items: center; gap: 12px; padding: 10px 12px 10px 28px; border: 1px solid color-mix(in srgb, #12141A 10%, transparent); border-radius: 0; color: #12141A; background-color: #F4F2EC; background-image: radial-gradient(circle at 0 10px, #12141A 4px, transparent 4.5px), radial-gradient(circle at 0 calc(100% - 10px), #12141A 4px, transparent 4.5px), repeating-linear-gradient(180deg, transparent 0, transparent 9px, color-mix(in srgb, #12141A 18%, transparent) 9px, color-mix(in srgb, #12141A 18%, transparent) 10px); background-size: 12px 100%, 12px 100%, 12px 100%; background-repeat: no-repeat, no-repeat, repeat-y; background-position: left top, left top, left center; box-shadow: inset 12px 0 0 color-mix(in srgb, #F5D547 35%, transparent); } .ds-stub__rank { width: 32px; font-family: \"Barlow Condensed\", ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; font-variant-numeric: tabular-nums; color: color-mix(in srgb, #12141A 45%, transparent); } .ds-stub__name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: \"Source Sans 3\", system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; } .ds-stub__meta { font-family: ui-monospace, monospace; font-size: 0.75rem; color: color-mix(in srgb, #12141A 45%, transparent); }"
+    },
+    {
+      "name": "Till Banner",
+      "kind": "custom",
+      "refersTo": "till-banner",
+      "description": "Committed yellow ticket-count field at the top of the till well.",
+      "html": "<div class=\"ds-till\"><div><p class=\"ds-till__label\">Tickets émis</p><p class=\"ds-till__sub\">Participants uniques · matching exact</p></div><p class=\"ds-till__count\">03</p></div>",
+      "css": ".ds-till { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 16px 20px; background: #F5D547; color: #12141A; border-radius: 0; } .ds-till__label { margin: 0; font-family: \"Barlow Condensed\", ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; } .ds-till__sub { margin: 4px 0 0; font-family: \"Source Sans 3\", system-ui, sans-serif; font-size: 0.875rem; color: color-mix(in srgb, #12141A 70%, transparent); } .ds-till__count { margin: 0; font-family: \"Barlow Condensed\", ui-sans-serif, system-ui, sans-serif; font-size: 3.75rem; font-weight: 800; line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Guichet Panel",
+      "kind": "card",
+      "refersTo": "guichet-panel",
+      "description": "Porcelain cashier panel with yellow till rule under the header.",
+      "html": "<section class=\"ds-guichet\"><header class=\"ds-guichet__head\"><h2 class=\"ds-guichet__title\">Guichet</h2><p class=\"ds-guichet__copy\">Les viewers qui tapent la commande exacte sont inscrits une seule fois.</p></header><div class=\"ds-guichet__body\">Contrôles</div></section>",
+      "css": ".ds-guichet { display: flex; flex-direction: column; background: #F4F2EC; color: #12141A; border-radius: 0; } .ds-guichet__head { padding: 12px 16px; border-bottom: 4px solid #F5D547; } .ds-guichet__title { margin: 0; font-family: \"Barlow Condensed\", ui-sans-serif, system-ui, sans-serif; font-size: 1.25rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; } .ds-guichet__copy { margin: 4px 0 0; font-family: \"Source Sans 3\", system-ui, sans-serif; font-size: 0.875rem; color: color-mix(in srgb, #12141A 65%, transparent); } .ds-guichet__body { padding: 16px; }"
+    },
+    {
+      "name": "Winner Stamp",
+      "kind": "custom",
+      "refersTo": "winner-stamp",
+      "description": "Fullscreen ticket-stamp reveal that owns the viewport after a draw.",
+      "html": "<div class=\"ds-stamp-scrim\"><div class=\"ds-stamp\" role=\"dialog\" aria-modal=\"true\"><div class=\"ds-stamp__head\"><p class=\"ds-stamp__kicker\">Ticket gagnant</p><h2 class=\"ds-stamp__title\">Gagnant</h2></div><div class=\"ds-stamp__body\"><p class=\"ds-stamp__name\">NovaBande</p><button class=\"ds-stamp__close\" type=\"button\">Fermer</button></div></div></div>",
+      "css": ".ds-stamp-scrim { display: flex; align-items: center; justify-content: center; padding: 16px; background: color-mix(in srgb, #12141A 85%, transparent); } .ds-stamp { width: 100%; max-width: 32rem; border: 4px solid #F5D547; border-radius: 0; background: #F4F2EC; color: #12141A; box-shadow: 0 18px 40px rgba(0,0,0,0.45); } .ds-stamp__head { padding: 20px 24px; background: #F5D547; color: #12141A; border-bottom: 1px solid color-mix(in srgb, #12141A 10%, transparent); } .ds-stamp__kicker { margin: 0; font-family: \"Barlow Condensed\", ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; } .ds-stamp__title { margin: 8px 0 0; font-family: \"Barlow Condensed\", ui-sans-serif, system-ui, sans-serif; font-size: 2.5rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; } .ds-stamp__body { padding: 32px 24px; text-align: center; } .ds-stamp__name { margin: 0 0 20px; font-family: \"Barlow Condensed\", ui-sans-serif, system-ui, sans-serif; font-size: 2.5rem; font-weight: 800; word-break: break-all; } .ds-stamp__close { display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 20rem; height: 48px; border: none; border-radius: 0; background: #12141A; color: #F4F2EC; font-family: \"Barlow Condensed\", ui-sans-serif, system-ui, sans-serif; font-size: 1.125rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: background 0.15s ease; } .ds-stamp__close:hover { background: #1C1F28; } .ds-stamp__close:focus-visible { outline: 2px solid #F5D547; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Arcade Ticket Counter",
+    "overview": "Rollaway is a charcoal desk till for Twitch giveaways. Each chat entry becomes a porcelain ticket stub; the yellow draw is the isolated cashier action. The world is physical and square — desk shell, guichet panel, perforated stubs — not a purple SaaS dashboard and not a costume arcade HUD.\n\nDensity stays operational: status chips in the top bar, controls in the guichet, stubs stacking in the till. Contrast is hard (porcelain on charcoal, yellow committed fields). Motion is brief and mechanical — stubs slide in, the winner stamp lands.",
+    "keyCharacteristics": [
+      "Charcoal desk shell with porcelain work surfaces",
+      "Ticket yellow reserved for count field and primary draw",
+      "Magenta reserved for active capture only",
+      "Condensed display type for counts and till labels; Source Sans 3 for controls",
+      "Square corners, perforated stub rows, standard web inputs"
+    ],
+    "rules": [
+      {
+        "name": "The Yellow Field Rule",
+        "body": "Ticket yellow is a committed field for count and draw — never a page wash, card chrome, or decorative accent strip outside those roles.",
+        "section": "colors"
+      },
+      {
+        "name": "The Punch Capture Rule",
+        "body": "Magenta appears only for active capture, capture-adjacent alerts, and the newest stub while capturing. Idle UI stays charcoal / porcelain / yellow.",
+        "section": "colors"
+      },
+      {
+        "name": "The Count Face Rule",
+        "body": "Only Barlow Condensed carries ticket counts and till headlines. Controls, body, and field labels stay on Source Sans 3.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Desk Rule",
+        "body": "Panels, chips, and fields stay flat. Soft lift shadows exist only on the draw CTA and the winner stamp — never as default card chrome.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Till Rule",
+        "body": "No soft SaaS rounding on working surfaces. If a control needs a radius to feel “friendly,” it is out of world.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do keep ticket yellow on the count banner and the isolated draw CTA (Yellow Field Rule).",
+      "Do stack participants as perforated porcelain stubs with the yellow left spine.",
+      "Do use Barlow Condensed for counts, till titles, draw, and stamp; Source Sans 3 for fields and body.",
+      "Do show connection / capture / ticket state as top-bar chips before asking the streamer to hunt for status.",
+      "Do respect prefers-reduced-motion by killing stub-enter and stamp-reveal animations."
+    ],
+    "donts": [
+      "Don't wash screens in purple/indigo Twitch SaaS gradients or card grids.",
+      "Don't costume the UI as an arcade HUD (neon frames, fake CRT chrome, sticker clusters).",
+      "Don't use magenta as a general brand accent — capture and capture-adjacent only.",
+      "Don't round working panels, buttons, chips, or inputs into soft product cards.",
+      "Don't scatter soft drop shadows onto every surface; lift is for draw + stamp only."
+    ]
+  }
+}

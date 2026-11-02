@@ -1,0 +1,130 @@
+{
+  "title": "Direction visuelle Rollaway",
+  "question": "Nouveau tirage : Comptoir tickets arcade. On le garde, une alternative, ou on relance ?",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Comptoir tickets arcade",
+      "kicker": "THE ROLL",
+      "lineage": "Guichet d’échange de tickets d’arcade — souches empilées, caisse, tampon",
+      "thesis": "Chaque inscription est une souche de ticket ; le tirage, c’est la caisse qui sort un gagnant.",
+      "palette": ["#12141A", "#F5D547", "#E11D7A", "#F4F2EC"],
+      "materials": ["comptoir charbon", "ticket jaune", "tampon magenta"],
+      "viewport": "Header Rollaway + pastilles d’état ; guichet à gauche (chaîne, commande, connecter, capture) ; à droite compteur tickets + souches empilées ; Tirer isolé en jaune.",
+      "risk": "Peut dériver vers costume arcade/HUD si le magenta déborde hors de l’état Capture.",
+      "raised": [
+        {
+          "from": "challenger-variable-font-specimen",
+          "raise": "Hiérarchie par contraste d’échelle extrême : le compteur domine, les labels restent petits."
+        },
+        {
+          "from": "challenger-rw-manual-acetate-tab-board",
+          "raise": "Une couleur de shell engagée à pleine force (jaune ticket / charbon), pas un gris + accent."
+        },
+        {
+          "from": "challenger-character-goods-catalog",
+          "raise": "Chaque participant a une plaque/nom claire, rangée comme une entrée de catalogue."
+        }
+      ],
+      "html": ".impeccable/mocks/decision/assigned.html",
+      "comp": ".impeccable/mocks/decision/assigned.webp"
+    },
+    {
+      "id": "model-pick",
+      "label": "Tableau LED stade",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Scoreboard LED de stade — ambre, live, chiffres tabulaires",
+      "thesis": "Le giveaway se lit comme un tableau de score : le compteur d’inscrits est la star du viewport.",
+      "palette": ["#0A0A0A", "#FFB000", "#3DDC84", "#1A1A1A"],
+      "materials": ["LED ambre", "noir stade", "vert live"],
+      "viewport": "Bandeau statut ; contrôles à gauche ; à droite énorme compteur LED + liste ; Tirer encadré ambre isolé.",
+      "risk": "Direction familière « outil live » — claire, mais plus prévisible.",
+      "html": ".impeccable/mocks/decision/model-pick.html",
+      "comp": ".impeccable/mocks/decision/model-pick.webp"
+    },
+    {
+      "id": "challenger-dark-console",
+      "label": "Console dark graphite",
+      "verdict": "wins",
+      "lineage": "Surface dark-first — seams hairline, accents syntaxe, actions isolées",
+      "thesis": "Panneaux graphite séparés au pixel près ; connecter / capturer / tirer ont des couleurs d’état et l’action critique est isolée.",
+      "palette": ["#1B1E24", "#2A2F38", "#3DDC84", "#FFB000", "#E11D48"],
+      "materials": ["graphite", "seams 1px", "accents syntaxe"],
+      "viewport": "Shell panneau : Config / Connexion / Contrôles à gauche ; Participants + gagnant à droite ; Arrêter et Tirer isolés.",
+      "case": "Bat le tirage sur clarté produit et identification streamer (outil live sombre).",
+      "risk": "Si on force le costume terminal (prompt, F-keys), ça redevient cosplay.",
+      "html": ".impeccable/mocks/decision/challenger-dark-console.html",
+      "comp": ".impeccable/mocks/decision/challenger-dark-console.webp",
+      "hero": "https://impeccable.style/worlds/cards/digital-design-canon-dark-first-developer-console-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/digital-design-canon-dark-first-developer-console.webp"
+    },
+    {
+      "id": "challenger-crouwel",
+      "label": "Grille Crouwel",
+      "verdict": "competitive",
+      "lineage": "Spécimen grillé Wim Crouwel — construction visible, lettres-cellules",
+      "thesis": "La grille de construction reste visible ; le compteur participants est monumental sur la grille.",
+      "palette": ["#FFFFFF", "#111111", "#1E3A8A", "#E5E5E5"],
+      "materials": ["hairlines de construction", "grotesk neutre", "plan d’accent"],
+      "viewport": "Grille apparente ; gros compteur ; modules Config / Connexion / Liste ; bouton Tirer en plan bleu.",
+      "case": "Clarté structurelle forte ; identification streamer plus faible.",
+      "risk": "Trop « poster type » si la grille mange l’outil.",
+      "html": ".impeccable/mocks/decision/challenger-crouwel.html",
+      "comp": ".impeccable/mocks/decision/challenger-crouwel.webp",
+      "hero": "https://impeccable.style/worlds/cards/crouwel-grid-specimen-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/crouwel-grid-specimen.webp"
+    },
+    {
+      "id": "challenger-variable-font",
+      "label": "Spécimen variable",
+      "verdict": "declined",
+      "lineage": "Spécimen de police variable — glyphes, axes, scale",
+      "palette": ["#FAFAFA", "#111111", "#C45C26"],
+      "materials": ["papier foundry", "échelle extrême"],
+      "case": "Trop typographique pour un écran d’opération live.",
+      "kept": "Hiérarchie par contraste d’échelle seul.",
+      "hero": "https://impeccable.style/worlds/cards/variable-font-specimen-hero.webp"
+    },
+    {
+      "id": "challenger-acetate-manual",
+      "label": "Manuel acétate à onglets",
+      "verdict": "declined",
+      "lineage": "Manuel logiciel à feuilles acétate et onglets couleur",
+      "palette": ["#F5E6C8", "#FFB000", "#0B3A5B"],
+      "materials": ["acétate", "onglets teintés"],
+      "case": "Costume manuel sur un outil live.",
+      "kept": "Couleur de section à pleine force.",
+      "hero": "https://impeccable.style/worlds/cards/rw-manual-acetate-tab-board-hero.webp"
+    },
+    {
+      "id": "challenger-character-goods",
+      "label": "Catalogue character goods",
+      "verdict": "declined",
+      "lineage": "Grille pastel de mascottes / name plates",
+      "palette": ["#FFF5F7", "#111111", "#FF6B9A"],
+      "materials": ["grille pastel", "name plates"],
+      "case": "Mauvais fit pour un giveaway opérationnel.",
+      "kept": "Plaque-nom claire par participant.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-character-goods-catalog-hero.webp"
+    }
+  ],
+  "reroll": {
+    "registers": ["safer", "bolder"]
+  },
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "Le standard catégorie",
+    "thesis": "Dashboard giveaway sombre violet Twitch, cartes propres, exécuté impeccablement.",
+    "palette": ["#0E0E10", "#9146FF", "#FFFFFF", "#1F1F23"],
+    "materials": ["cards", "violet Twitch", "grille SaaS"],
+    "viewport": "Header + cards setup + table participants.",
+    "risk": "Indistinguable des clones du marché.",
+    "html": ".impeccable/mocks/decision/canon.html",
+    "comp": ".impeccable/mocks/decision/canon.webp"
+  },
+  "steer": true
+}

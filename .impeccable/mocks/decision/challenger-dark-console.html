@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!-- impeccable-served -->
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Rollaway — Dark console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #1B1E24; --panel: #22262E; --seam: #2E333C; --ink: #E8EAED;
+    --mute: #A0A6B0; --dim: #8B929E; --green: #3DDC84; --amber: #E8A838; --red: #FF6B6A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1440px; height: 900px; overflow: hidden; background: var(--bg); color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+  }
+  .stage { width: 1440px; height: 900px; display: grid; grid-template-rows: 48px 1fr; }
+  header {
+    display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+    border-bottom: 1px solid var(--seam); background: var(--panel);
+  }
+  .brand { display: flex; align-items: baseline; gap: 12px; }
+  .brand h1 { font-size: 15px; font-weight: 700; letter-spacing: .02em; }
+  .brand span { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11px; color: var(--mute); }
+  .status { display: flex; gap: 20px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11px; color: var(--mute); }
+  .status b { font-weight: 500; }
+  .status .ok { color: var(--green); }
+  .status .cap { color: var(--amber); }
+  main {
+    display: grid; grid-template-columns: 320px 320px 1fr; grid-template-rows: 1fr 220px;
+    min-height: 0;
+  }
+  .panel {
+    border-right: 1px solid var(--seam); border-bottom: 1px solid var(--seam);
+    padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 14px; min-height: 0;
+    background: var(--bg);
+  }
+  .panel.ctrl { grid-column: 1 / 3; border-bottom: none; }
+  .panel.parts { grid-column: 3; grid-row: 1 / 3; border-right: none; border-bottom: none; }
+  .panel h2 {
+    font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--mute);
+    padding-bottom: 10px; border-bottom: 1px solid var(--seam);
+  }
+  label { display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: var(--mute); font-weight: 500; }
+  input {
+    height: 36px; border: 1px solid var(--seam); background: var(--panel); color: var(--ink);
+    padding: 0 12px; font: 500 13px "IBM Plex Mono", ui-monospace, monospace; border-radius: 0; outline: none;
+  }
+  .hint { font-size: 12px; color: var(--dim); line-height: 1.45; }
+  .hint code { font-family: "IBM Plex Mono", ui-monospace, monospace; color: var(--amber); font-size: 12px; }
+  .kv { display: grid; grid-template-columns: 108px 1fr; gap: 8px 10px; font-size: 13px; }
+  .kv span { color: var(--mute); font-size: 11px; align-self: center; }
+  .kv strong { font-family: "IBM Plex Mono", ui-monospace, monospace; font-weight: 500; font-size: 12px; }
+  .lit { color: var(--green); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  button {
+    height: 34px; padding: 0 14px; border: 1px solid var(--seam); background: var(--panel); color: var(--ink);
+    font: 600 12px "IBM Plex Sans", system-ui, sans-serif; border-radius: 0; cursor: default;
+  }
+  .btn-go { border-color: rgba(61,220,132,.45); color: var(--green); }
+  .btn-cap { border-color: rgba(232,168,56,.5); color: var(--amber); background: rgba(232,168,56,.08); }
+  .btn-ghost { color: var(--mute); }
+  .ctrl-body { display: grid; grid-template-columns: 1fr 280px; gap: 0; flex: 1; min-height: 0; }
+  .ctrl-safe { display: flex; flex-direction: column; gap: 12px; padding-right: 28px; border-right: 1px solid var(--seam); }
+  .ctrl-danger {
+    display: flex; flex-direction: column; justify-content: flex-end; gap: 10px;
+    padding-left: 48px; margin-left: 0;
+  }
+  .danger-note { font-size: 11px; color: var(--dim); margin-bottom: auto; padding-top: 4px; }
+  .btn-stop, .btn-draw {
+    height: 40px; width: 100%; border: 1px solid var(--red); color: var(--red); background: transparent;
+    font-weight: 700; letter-spacing: .02em;
+  }
+  .btn-draw { background: rgba(226,75,74,.1); }
+  .parts-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .parts-head .n {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 28px; font-weight: 600;
+    font-variant-numeric: tabular-nums; letter-spacing: -.02em;
+  }
+  .parts-head .n em { font-style: normal; font-size: 12px; color: var(--mute); font-weight: 500; margin-left: 8px; }
+  .list { flex: 1; overflow: hidden; border: 1px solid var(--seam); margin-top: 4px; padding: 1px; }
+  .thead, .ri {
+    display: grid; grid-template-columns: 44px 1fr 96px; font-family: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  .thead {
+    font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim);
+    border-bottom: 1px solid var(--seam); background: var(--panel);
+  }
+  .thead span, .ri span { padding: 8px 12px; border-right: 1px solid var(--seam); }
+  .thead span:last-child, .ri span:last-child { border-right: none; }
+  .ri { font-size: 12px; color: #C4C9D1; border-bottom: 1px solid var(--seam); }
+  .ri:nth-child(even) { background: rgba(0,0,0,.18); }
+  .ri .num { color: var(--dim); }
+  .ri.hot { background: rgba(232,168,56,.12); color: var(--amber); }
+  .winner {
+    margin-top: 12px; padding: 12px 14px; border: 1px solid var(--seam); display: flex; justify-content: space-between; align-items: center;
+  }
+  .winner span { font-size: 11px; color: var(--mute); letter-spacing: .08em; text-transform: uppercase; }
+  .winner strong { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 14px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <header>
+    <div class="brand">
+      <h1>Rollaway</h1>
+      <span>giveaway / session</span>
+    </div>
+    <div class="status">
+      <span>irc <b class="ok">connecté</b></span>
+      <span>capture <b class="cap">active</b></span>
+      <span>cmd <b>!giveaway</b></span>
+    </div>
+  </header>
+  <main>
+    <section class="panel">
+      <h2>Configuration</h2>
+      <label>Commande
+        <input value="!giveaway" readonly />
+      </label>
+      <p class="hint">Les viewers qui tapent <code>!giveaway</code> dans le chat sont inscrits une seule fois.</p>
+    </section>
+    <section class="panel">
+      <h2>Connexion</h2>
+      <label>Chaîne Twitch
+        <input value="onivoid" readonly />
+      </label>
+      <div class="row">
+        <button class="btn-go">Connecter</button>
+        <button class="btn-ghost">Déconnecter</button>
+      </div>
+      <div class="kv">
+        <span>État</span><strong class="lit">Connecté</strong>
+        <span>Canal</span><strong>#onivoid</strong>
+        <span>Mode</span><strong>lecture anonyme</strong>
+      </div>
+    </section>
+    <section class="panel parts">
+      <div class="parts-head">
+        <h2 style="border:0;padding:0;flex:1">Participants</h2>
+        <div class="n">128<em>inscrits</em></div>
+      </div>
+      <div class="list">
+        <div class="thead"><span>#</span><span>Pseudo</span><span>Heure</span></div>
+        <div class="ri hot"><span class="num">128</span><span>nova_lyte</span><span>14:52:01</span></div>
+        <div class="ri"><span class="num">127</span><span>pixel_fox</span><span>14:51:44</span></div>
+        <div class="ri"><span class="num">126</span><span>kira_wave</span><span>14:51:12</span></div>
+        <div class="ri"><span class="num">125</span><span>duskrunner</span><span>14:50:58</span></div>
+        <div class="ri"><span class="num">124</span><span>orbit_tea</span><span>14:50:31</span></div>
+        <div class="ri"><span class="num">123</span><span>luna_bit</span><span>14:49:55</span></div>
+        <div class="ri"><span class="num">122</span><span>ash_frame</span><span>14:49:20</span></div>
+        <div class="ri"><span class="num">121</span><span>volt_mint</span><span>14:48:47</span></div>
+        <div class="ri"><span class="num">120</span><span>reed_glow</span><span>14:48:09</span></div>
+        <div class="ri"><span class="num">119</span><span>mica_null</span><span>14:47:33</span></div>
+      </div>
+      <div class="winner">
+        <span>Gagnant</span>
+        <strong>—</strong>
+      </div>
+    </section>
+    <section class="panel ctrl">
+      <h2>Contrôles</h2>
+      <div class="ctrl-body">
+        <div class="ctrl-safe">
+          <div class="row">
+            <button class="btn-cap">Démarrer la capture</button>
+            <button class="btn-ghost">Réinitialiser la liste</button>
+          </div>
+          <p class="hint">Capture active : les messages exacts à la commande sont ajoutés. État : <strong style="color:var(--amber)">Active</strong></p>
+        </div>
+        <div class="ctrl-danger">
+          <p class="danger-note">Actions destructives isolées</p>
+          <button class="btn-stop">Arrêter la capture</button>
+          <button class="btn-draw">Tirer un gagnant</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

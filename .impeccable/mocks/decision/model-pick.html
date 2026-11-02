@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!-- impeccable-served -->
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Rollaway — Tableau LED</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --void: #0A0A0A; --amber: #FFB000; --live: #3DDC84; --steel: #1C1F26;
+    --steel-2: #2A303A; --edge: #3A424E; --fog: #9AA3B0; --panel: #12151B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1440px; height: 900px; overflow: hidden; background: var(--void);
+    font-family: "IBM Plex Sans", system-ui, sans-serif; color: #E8ECF2;
+    -webkit-font-smoothing: antialiased;
+  }
+  .stage {
+    width: 1440px; height: 900px; display: grid; grid-template-rows: 68px 1fr;
+    background:
+      linear-gradient(180deg, #10131A 0%, var(--void) 40%, #050505 100%);
+  }
+  header {
+    display: flex; align-items: center; justify-content: space-between; padding: 0 28px;
+    border-bottom: 1px solid var(--edge); background: var(--panel);
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand .led { width: 12px; height: 12px; background: var(--live); box-shadow: 0 0 12px rgba(61,220,132,.55); }
+  .brand h1 {
+    font-family: "Chakra Petch", sans-serif; font-size: 22px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--amber);
+  }
+  .status { display: flex; gap: 8px; font-family: "Share Tech Mono", monospace; font-size: 13px; letter-spacing: .08em; }
+  .pill {
+    height: 30px; padding: 0 12px; display: inline-flex; align-items: center; gap: 8px;
+    background: var(--steel); border: 1px solid var(--edge); color: var(--fog); text-transform: uppercase;
+  }
+  .pill.on { color: var(--live); border-color: rgba(61,220,132,.45); }
+  .pill.cap { color: var(--amber); border-color: rgba(255,176,0,.45); }
+  .pill i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; display: inline-block; }
+  main { display: grid; grid-template-columns: 420px 1fr; gap: 24px; padding: 24px 28px 28px; min-height: 0; }
+  .controls {
+    background: var(--steel); border: 1px solid var(--edge); display: flex; flex-direction: column;
+    min-height: 0; box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .controls h2 {
+    padding: 16px 20px; font-family: "Chakra Petch", sans-serif; font-size: 14px; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--fog); border-bottom: 1px solid var(--edge);
+  }
+  .fields { padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  label { display: flex; flex-direction: column; gap: 6px; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fog); }
+  input {
+    height: 42px; border: 1px solid var(--edge); background: var(--void); padding: 0 12px;
+    font: 500 15px "Share Tech Mono", ui-monospace, monospace; color: var(--amber); outline: none;
+  }
+  input:focus { border-color: var(--amber); }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  button {
+    height: 42px; border: 1px solid var(--edge); background: var(--steel-2); color: #E8ECF2;
+    font: 600 13px "Chakra Petch", sans-serif; letter-spacing: .06em; text-transform: uppercase; cursor: default;
+  }
+  .btn-amber { background: var(--amber); border-color: #C78800; color: #111; }
+  .btn-live { border-color: rgba(61,220,132,.5); color: var(--live); }
+  .btn-mute { color: var(--fog); }
+  .draw {
+    margin: 20px 20px 24px; padding-top: 24px; border-top: 1px solid var(--edge);
+  }
+  .draw button {
+    width: 100%; height: 54px; background: transparent; border: 2px solid var(--amber);
+    color: var(--amber); font-size: 15px; font-weight: 700; letter-spacing: .1em;
+  }
+  .draw p { margin-top: 10px; text-align: center; font-family: "Share Tech Mono", monospace; font-size: 11px; color: var(--fog); letter-spacing: .06em; }
+  .board { display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+  .score {
+    background: #050505; border: 2px solid var(--edge); padding: 20px 28px 18px;
+    box-shadow: inset 0 0 40px rgba(255,176,0,.06), 0 16px 40px rgba(0,0,0,.45);
+    position: relative;
+  }
+  .score::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,.18) 3px 4px);
+    opacity: .55;
+  }
+  .score .top {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+    font-family: "Share Tech Mono", monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--fog);
+  }
+  .score .top em { font-style: normal; color: var(--live); }
+  .score .digits {
+    font-family: "Share Tech Mono", ui-monospace, monospace; font-size: 120px; line-height: .85;
+    color: var(--amber); font-variant-numeric: tabular-nums; letter-spacing: .08em;
+    text-shadow: 0 0 24px rgba(255,176,0,.35); text-align: center;
+  }
+  .score .cap {
+    text-align: center; margin-top: 10px; font-family: "Chakra Petch", sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,176,0,.7);
+  }
+  .list {
+    flex: 1; background: var(--steel); border: 1px solid var(--edge); display: flex; flex-direction: column;
+    min-height: 0; overflow: hidden;
+  }
+  .cols, .p {
+    display: grid; grid-template-columns: 56px 1fr 140px 100px;
+    font-family: "Share Tech Mono", monospace; font-variant-numeric: tabular-nums;
+  }
+  .cols {
+    padding: 10px 18px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--fog); border-bottom: 1px solid var(--edge); background: var(--panel);
+  }
+  .p {
+    padding: 0 18px; height: 42px; align-items: center; font-size: 14px; color: #C5CCD8;
+    border-bottom: 1px solid rgba(58,66,78,.55);
+  }
+  .p:nth-child(even) { background: rgba(0,0,0,.22); }
+  .p .n { color: var(--fog); }
+  .p .st { color: var(--live); letter-spacing: .08em; text-transform: uppercase; font-size: 12px; }
+  .p.fresh { background: rgba(255,176,0,.12); color: var(--amber); }
+  .p.fresh .st { color: var(--amber); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <header>
+    <div class="brand"><span class="led" aria-hidden="true"></span><h1>Rollaway</h1></div>
+    <div class="status">
+      <span class="pill on"><i></i>Connecté</span>
+      <span class="pill cap"><i></i>Capture ON</span>
+      <span class="pill">Chaîne · onivoid</span>
+    </div>
+  </header>
+  <main>
+    <section class="controls" aria-label="Configuration">
+      <h2>Contrôle terrain</h2>
+      <div class="fields">
+        <label for="ch">Chaîne Twitch<input id="ch" type="text" value="onivoid" readonly /></label>
+        <label for="cmd">Commande exacte<input id="cmd" type="text" value="!giveaway" readonly /></label>
+        <div class="row2">
+          <button type="button">Connecter</button>
+          <button class="btn-live" type="button">Démarrer capture</button>
+        </div>
+        <button class="btn-mute" type="button">Arrêter capture</button>
+      </div>
+      <div class="draw">
+        <button class="btn-amber" type="button">Tirer un gagnant</button>
+        <p>12 inscrits · tirage isolé</p>
+      </div>
+    </section>
+    <section class="board" aria-label="Tableau des scores">
+      <div class="score">
+        <div class="top"><span>Participants</span><em>LIVE</em></div>
+        <div class="digits">012</div>
+        <div class="cap">Inscrits uniques</div>
+      </div>
+      <div class="list">
+        <div class="cols"><span>#</span><span>Pseudo</span><span>Commande</span><span>Statut</span></div>
+        <div class="p"><span class="n">01</span><span>NightOwl_FR</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="p"><span class="n">02</span><span>PixelMaraude</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="p"><span class="n">03</span><span>Chatouilleuse</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="p"><span class="n">04</span><span>BlueLagoon</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="p"><span class="n">05</span><span>KeroStream</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="p"><span class="n">06</span><span>Lumen_FR</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="p"><span class="n">07</span><span>TarotNocturne</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="p"><span class="n">08</span><span>SodaPixel</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="p"><span class="n">09</span><span>MireilleBit</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="p"><span class="n">10</span><span>VaporClaw</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="p"><span class="n">11</span><span>HexaCafe</span><span>!giveaway</span><span class="st">OK</span></div>
+        <div class="p fresh"><span class="n">12</span><span>NovaBande</span><span>!giveaway</span><span class="st">Nouveau</span></div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

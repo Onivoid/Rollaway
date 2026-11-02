@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Barlow_Condensed, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
-import { NavigationComponent } from "@/components/custom/Navigation";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const ui = Source_Sans_3({
+  variable: "--font-ui",
   subsets: ["latin"],
+  weight: ["400", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const display = Barlow_Condensed({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "Rollaway - Giveaway Twitch",
-  description: "Créer et gérer des giveaways sur votre stream Twitch très facilement et gratuitement !",
+  title: "Rollaway — Giveaway Twitch",
+  description:
+    "Tirage au sort Twitch : connecte le chat, ouvre les inscriptions, tire un ou plusieurs gagnants. Gratuit, sans compte.",
 };
 
 export default function RootLayout({
@@ -24,12 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
-      >
+    <html lang="fr">
+      <body className={`${ui.variable} ${display.variable}`}>
         {children}
-        <NavigationComponent />
       </body>
     </html>
   );

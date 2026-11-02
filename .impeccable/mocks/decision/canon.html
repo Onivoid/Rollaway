@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!-- impeccable-served -->
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Rollaway — Canon SaaS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0E0E10; --surface: #18181B; --surface-2: #1F1F23; --border: #2A2A2E;
+    --ink: #EFEFF1; --mute: #ADADB8; --dim: #A0A0AE; --twitch: #9146FF; --twitch-d: #772CE8;
+    --green: #00A971; --red: #EB0400;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1440px; height: 900px; overflow: hidden; background: var(--bg); color: var(--ink);
+    font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+  }
+  .stage { width: 1440px; height: 900px; display: grid; grid-template-rows: 64px 1fr; }
+  header {
+    display: flex; align-items: center; justify-content: space-between; padding: 0 28px;
+    border-bottom: 1px solid var(--border); background: var(--surface);
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .logo {
+    width: 28px; height: 28px; border-radius: 8px; background: var(--twitch);
+    display: grid; place-items: center; font-weight: 700; font-size: 14px; color: #fff;
+  }
+  .brand h1 { font-size: 20px; font-weight: 700; letter-spacing: -.01em; }
+  .brand p { font-size: 12px; color: var(--mute); margin-top: 1px; }
+  .badges { display: flex; gap: 10px; align-items: center; }
+  .badge {
+    height: 28px; padding: 0 12px; border-radius: 999px; font-size: 12px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px; background: var(--surface-2); color: var(--mute);
+    border: 1px solid var(--border);
+  }
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  .badge.cap .dot { background: var(--twitch); }
+  main {
+    display: grid; grid-template-columns: 380px 1fr; gap: 20px; padding: 24px 28px 28px; min-height: 0;
+  }
+  .col { display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px 16px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .card h2 { font-size: 14px; font-weight: 600; }
+  .card .desc { font-size: 12px; color: var(--mute); line-height: 1.45; margin-top: -6px; }
+  label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; font-weight: 500; color: var(--mute); }
+  input {
+    height: 38px; border: 1px solid var(--border); background: var(--surface-2); color: var(--ink);
+    padding: 0 12px; border-radius: 8px; font: 500 14px Inter, system-ui, sans-serif; outline: none;
+  }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  button {
+    height: 36px; padding: 0 14px; border-radius: 8px; border: 1px solid transparent;
+    font: 600 13px Inter, system-ui, sans-serif; cursor: default;
+  }
+  .btn-pri { background: var(--twitch); color: #fff; }
+  .btn-pri:hover { background: var(--twitch-d); }
+  .btn-sec { background: var(--surface-2); color: var(--ink); border-color: var(--border); }
+  .btn-danger { background: rgba(235,4,0,.15); color: #FF8280; border-color: rgba(235,4,0,.35); }
+  .btn-ghost { background: transparent; color: var(--mute); border-color: var(--border); }
+  .btn-full { width: 100%; height: 40px; }
+  .state { font-size: 12px; color: var(--mute); }
+  .state strong.on { color: var(--green); }
+  .state strong.off { color: var(--red); }
+  .parts-card { flex: 1; min-height: 0; }
+  .parts-head { display: flex; justify-content: space-between; align-items: center; }
+  .parts-head .count {
+    font-size: 13px; font-weight: 600; color: var(--mute);
+  }
+  .parts-head .count b { color: var(--ink); font-size: 18px; margin-right: 4px; font-variant-numeric: tabular-nums; }
+  .table { flex: 1; overflow: hidden; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); padding: 1px; }
+  .thead, .tr {
+    display: grid; grid-template-columns: 56px 1fr 120px; font-size: 13px;
+  }
+  .thead {
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--dim);
+    border-bottom: 1px solid var(--border); background: rgba(0,0,0,.25);
+  }
+  .thead span, .tr span { padding: 10px 14px; }
+  .tr { border-bottom: 1px solid var(--border); color: var(--ink); }
+  .tr:last-child { border-bottom: none; }
+  .tr .n { color: var(--dim); font-variant-numeric: tabular-nums; }
+  .tr.new { background: rgba(145,70,255,.12); }
+  .tr.new span:nth-child(2) { font-weight: 600; color: #C4A0FF; }
+  .winner {
+    margin-top: auto; padding: 14px 16px; border-radius: 10px; background: rgba(145,70,255,.12);
+    border: 1px solid rgba(145,70,255,.35); display: flex; justify-content: space-between; align-items: center;
+  }
+  .winner span { font-size: 12px; color: var(--mute); font-weight: 500; }
+  .winner strong { font-size: 15px; font-weight: 700; color: #D4B8FF; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <header>
+    <div class="brand">
+      <div class="logo">R</div>
+      <div>
+        <h1>Rollaway</h1>
+        <p>Giveaway Twitch · open source</p>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge"><span class="dot"></span>Connecté · #onivoid</span>
+      <span class="badge cap"><span class="dot"></span>Capture active</span>
+    </div>
+  </header>
+  <main>
+    <div class="col">
+      <section class="card">
+        <h2>Configuration du giveaway</h2>
+        <p class="desc">Les utilisateurs qui tapent la commande exacte dans le chat seront ajoutés comme participants.</p>
+        <label>Commande
+          <input value="!giveaway" readonly />
+        </label>
+      </section>
+      <section class="card">
+        <h2>Connexion Twitch</h2>
+        <label>Nom de la chaîne
+          <input value="onivoid" readonly />
+        </label>
+        <div class="row">
+          <button class="btn-pri">Connecter</button>
+          <button class="btn-ghost">Déconnecter</button>
+        </div>
+      </section>
+      <section class="card">
+        <h2>Contrôles</h2>
+        <div class="row">
+          <button class="btn-pri">Démarrer la capture</button>
+          <button class="btn-danger">Arrêter la capture</button>
+        </div>
+        <div class="row">
+          <button class="btn-sec">Réinitialiser</button>
+        </div>
+        <button class="btn-pri btn-full">Tirer un gagnant</button>
+        <p class="state">État de la capture : <strong class="on">Active</strong></p>
+      </section>
+    </div>
+    <div class="col">
+      <section class="card parts-card">
+        <div class="parts-head">
+          <h2>Participants</h2>
+          <div class="count"><b>128</b>inscrits</div>
+        </div>
+        <div class="table">
+          <div class="thead"><span>#</span><span>Pseudo</span><span>Heure</span></div>
+          <div class="tr new"><span class="n">128</span><span>nova_lyte</span><span>14:52:01</span></div>
+          <div class="tr"><span class="n">127</span><span>pixel_fox</span><span>14:51:44</span></div>
+          <div class="tr"><span class="n">126</span><span>kira_wave</span><span>14:51:12</span></div>
+          <div class="tr"><span class="n">125</span><span>duskrunner</span><span>14:50:58</span></div>
+          <div class="tr"><span class="n">124</span><span>orbit_tea</span><span>14:50:31</span></div>
+          <div class="tr"><span class="n">123</span><span>luna_bit</span><span>14:49:55</span></div>
+          <div class="tr"><span class="n">122</span><span>ash_frame</span><span>14:49:20</span></div>
+          <div class="tr"><span class="n">121</span><span>volt_mint</span><span>14:48:47</span></div>
+          <div class="tr"><span class="n">120</span><span>reed_glow</span><span>14:48:09</span></div>
+          <div class="tr"><span class="n">119</span><span>mica_null</span><span>14:47:33</span></div>
+        </div>
+        <div class="winner">
+          <span>Gagnant</span>
+          <strong>En attente du tirage</strong>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>
