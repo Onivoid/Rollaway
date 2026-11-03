@@ -114,12 +114,14 @@ export function WinnerReveal({
           </div>
 
           <div className="ticket-stub space-y-5 px-6 py-8">
-            <ul className="space-y-2">
+            <ul className="theme-scroll winner-list-scroll space-y-2 pr-1">
               {winners.map((name, index) => (
                 <li
                   key={`${name}-${index}`}
-                  className="winner-name flex items-center gap-3 border border-porcelain-ink/10 bg-white px-3 py-3"
-                  style={{ animationDelay: `${120 + index * 140}ms` }}
+                  className="winner-name flex min-h-14 items-center gap-3 border border-porcelain-ink/10 bg-white px-3 py-3"
+                  style={{
+                    animationDelay: `${120 + Math.min(index, 5) * 140}ms`,
+                  }}
                 >
                   {plural && (
                     <span className="font-display text-lg font-bold text-porcelain-ink/40">
