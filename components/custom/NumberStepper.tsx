@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 
 export function NumberStepper({
@@ -20,13 +20,11 @@ export function NumberStepper({
 }) {
   const clampedMax = Math.max(min, max);
   const current = Math.min(Math.max(min, value), clampedMax);
+  const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(String(current));
   const canDec = !disabled && current > min;
   const canInc = !disabled && current < clampedMax;
-
-  useEffect(() => {
-    setDraft(String(current));
-  }, [current]);
+  const display = editing ? draft : String(current);
 
   const commit = (next: number) => {
     onChange(Math.min(Math.max(min, Math.floor(next)), clampedMax));
@@ -42,7 +40,10 @@ export function NumberStepper({
         type="button"
         aria-label="Diminuer"
         disabled={!canDec}
-        onClick={() => commit(current - 1)}
+        onClick={() => {
+          setEditing(false);
+          commit(current - 1);
+        }}
         className="flex w-11 shrink-0 items-center justify-center border-r border-porcelain-ink/15 text-porcelain-ink transition hover:bg-porcelain-ink/5 disabled:cursor-not-allowed disabled:opacity-35"
       >
         <Minus className="size-4" aria-hidden />
@@ -53,11 +54,16 @@ export function NumberStepper({
         type="text"
         inputMode="numeric"
         pattern="[0-9]*"
+        role="spinbutton"
         aria-valuemin={min}
         aria-valuemax={clampedMax}
         aria-valuenow={current}
         disabled={disabled}
-        value={draft}
+        value={display}
+        onFocus={() => {
+          setDraft(String(current));
+          setEditing(true);
+        }}
         onChange={(e) => {
           const digits = e.target.value.replace(/\D/g, "");
           setDraft(digits);
@@ -65,6 +71,7 @@ export function NumberStepper({
           commit(Number(digits));
         }}
         onBlur={() => {
+          setEditing(false);
           if (draft === "") {
             commit(min);
             return;
@@ -78,7 +85,10 @@ export function NumberStepper({
         type="button"
         aria-label="Augmenter"
         disabled={!canInc}
-        onClick={() => commit(current + 1)}
+        onClick={() => {
+          setEditing(false);
+          commit(current + 1);
+        }}
         className="flex w-11 shrink-0 items-center justify-center border-l border-porcelain-ink/15 text-porcelain-ink transition hover:bg-porcelain-ink/5 disabled:cursor-not-allowed disabled:opacity-35"
       >
         <Plus className="size-4" aria-hidden />

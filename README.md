@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rollaway
 
-## Getting Started
+https://github.com/user-attachments/assets/18da5b7d-2c1c-41ae-92ae-243657642e65
 
-First, run the development server:
+Petit outil de giveaway pour Twitch. Tu branches le chat, les gens tapent une commande, tu tires un gagnant. Pas de compte, pas de serveur, rien à configurer côté Twitch.
+
+Fait pour tourner en fenêtre à côté d’OBS pendant un live.
+
+## Ce que ça fait
+
+- Connexion en lecture seule au chat d’une chaîne publique (`tmi.js`, IRC anonyme)
+- Commande configurable (par défaut `!giveaway`) — le message doit matcher exactement
+- Ouverture / fermeture des inscriptions
+- Un viewer = une inscription max
+- Un ou plusieurs gagnants, tirés au hasard, sans doublon
+- Confirmation avant le tirage
+- Mode démo avec de faux inscrits si tu testes seul
+- Petit tour d’aide au premier lancement
+
+Le tirage a une anim un peu théâtrale (confettis, tampon). Le reste de l’UI reste sobre.
+
+## Tech
+
+- Next.js 16 (App Router) + React 19
+- Tailwind CSS 4
+- État en mémoire côté client uniquement
+
+## Lancer en local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+→ [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm build
+pnpm lint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## En live
 
-## Learn More
+1. Nom de la chaîne
+2. Commande (si tu changes le défaut)
+3. Connecter le chat, ouvrir les inscriptions
+4. Attendre les commandes dans le chat
+5. Fermer les inscriptions, confirmer, tirer
 
-To learn more about Next.js, take a look at the following resources:
+Pour tester sans viewers : **Démonstration** en haut à droite.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Look
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+UI type comptoir / ticket : fond sombre, panneau clair, jaune ticket `#F5D547`, rose punch quand les inscriptions sont ouvertes. Fonts : Barlow Condensed + Source Sans 3.
 
-## Deploy on Vercel
+Plus de détails dans [`DESIGN.md`](./DESIGN.md).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Licence
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT — [@Onivoid](https://github.com/Onivoid)

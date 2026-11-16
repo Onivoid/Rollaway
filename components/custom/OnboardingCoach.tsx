@@ -2,16 +2,38 @@
 
 import {
   useCallback,
-  useEffect,
   useId,
   useLayoutEffect,
   useRef,
   useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import { createPortal } from "react-dom";
+import { useIsClient } from "@/lib/client";
 
 const STORAGE_KEY = "rollaway-onboarding-v2";
+const STORAGE_EVENT = "rollaway-onboarding";
+
+function subscribeOnboarding(onChange: () => void) {
+  const handler = () => onChange();
+  window.addEventListener("storage", handler);
+  window.addEventListener(STORAGE_EVENT, handler);
+  return () => {
+    window.removeEventListener("storage", handler);
+    window.removeEventListener(STORAGE_EVENT, handler);
+  };
+}
+
+function readOnboardingDone() {
+  return window.localStorage.getItem(STORAGE_KEY) === "done";
+}
+
+function writeOnboardingDone(done: boolean) {
+  if (done) window.localStorage.setItem(STORAGE_KEY, "done");
+  else window.localStorage.removeItem(STORAGE_KEY);
+  window.dispatchEvent(new Event(STORAGE_EVENT));
+}
 
 export type TipId =
   | "channel"
@@ -70,29 +92,24 @@ function readTargetRect(id: TipId): Rect | null {
 }
 
 export function useOnboarding() {
-  const [ready, setReady] = useState(false);
-  const [dismissed, setDismissed] = useState(true);
+  const ready = useIsClient();
+  const dismissed = useSyncExternalStore(
+    subscribeOnboarding,
+    readOnboardingDone,
+    () => true
+  );
   const [step, setStep] = useState(0);
   const [openTip, setOpenTip] = useState<TipId | null>(null);
 
-  useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    const done = stored === "done";
-    setDismissed(done);
-    setReady(true);
-  }, []);
-
   const finish = useCallback(() => {
-    window.localStorage.setItem(STORAGE_KEY, "done");
-    setDismissed(true);
+    writeOnboardingDone(true);
     setOpenTip(null);
   }, []);
 
   const next = useCallback(() => {
     setStep((current) => {
       if (current >= STEPS.length - 1) {
-        window.localStorage.setItem(STORAGE_KEY, "done");
-        setDismissed(true);
+        writeOnboardingDone(true);
         setOpenTip(null);
         return current;
       }
@@ -120,8 +137,7 @@ export function useOnboarding() {
     finish,
     showTip,
     restart: () => {
-      window.localStorage.removeItem(STORAGE_KEY);
-      setDismissed(false);
+      writeOnboardingDone(false);
       setStep(0);
       setOpenTip(null);
     },
@@ -145,10 +161,8 @@ export function OnboardingHighlight({
   onNext: () => void;
   onSkip: () => void;
 }) {
+  const mounted = useIsClient();
   const [rect, setRect] = useState<Rect | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
 
   const measure = useCallback(() => {
     setRect(readTargetRect(stepId));
@@ -318,17 +332,12 @@ export function InfoBubble({
 }) {
   const labelId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const mounted = useIsClient();
   const [coords, setCoords] = useState<Rect | null>(null);
-  const [mounted, setMounted] = useState(false);
   const open = !disabled && openTip === tipId;
 
-  useEffect(() => setMounted(true), []);
-
   useLayoutEffect(() => {
-    if (!open || !buttonRef.current) {
-      setCoords(null);
-      return;
-    }
+    if (!open || !buttonRef.current) return;
     const update = () => {
       const r = buttonRef.current!.getBoundingClientRect();
       setCoords({

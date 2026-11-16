@@ -577,7 +577,13 @@ export function GiveawayApp() {
         }}
       />
 
-      <WinnerReveal winners={winners} onClose={resetWinners} />
+      {winners.length > 0 && (
+        <WinnerReveal
+          key={winners.join("|")}
+          winners={winners}
+          onClose={resetWinners}
+        />
+      )}
     </div>
   );
 }
